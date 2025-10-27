@@ -11,18 +11,19 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
-     private final UserRepository userRepo;
 
-
+    // ✅ Make sure this field exists and is final for Lombok injection
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        User user = userRepo.findByEmail(email)
-            .orElseThrow(() -> new UsernameNotFoundException("User Not Found Exception"));
-        return org.springframework.security.core.userdetails.User.withUsername(user.getEmail())
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(user.getEmail())
                 .password(user.getPassword())
-                .authorities("USER")
+                .authorities("USER") // must not be empty
                 .build();
     }
 }

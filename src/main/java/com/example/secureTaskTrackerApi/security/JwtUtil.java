@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Component
-public class JwtUtill {
+public class JwtUtil {
 
     private final String SECRET_KEY = "mysecretkeymysecretkeymysecretkeymysecretkey"; // min 256-bit for HS256
 

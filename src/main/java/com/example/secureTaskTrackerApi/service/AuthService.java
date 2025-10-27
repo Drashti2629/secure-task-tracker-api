@@ -5,7 +5,7 @@ import com.example.secureTaskTrackerApi.dto.LoginRequest;
 import com.example.secureTaskTrackerApi.dto.RegisterRequest;
 import com.example.secureTaskTrackerApi.entity.User;
 import com.example.secureTaskTrackerApi.repository.UserRepository;
-import com.example.secureTaskTrackerApi.security.JwtUtill;
+import com.example.secureTaskTrackerApi.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,7 +20,7 @@ public class AuthService {
      private final UserRepository userRepo;
      private final PasswordEncoder passwordEncoder;
      private final AuthenticationManager authManager;
-     private final JwtUtill jwtUtill;
+     private final JwtUtil jwtUtil;
      private final UserDetailsService userDetailsService;
 
 
@@ -44,7 +44,7 @@ public class AuthService {
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
 
-        String token = jwtUtill.generateToken(userDetails);
+        String token = jwtUtil.generateToken(userDetails);
         return  new JwtResponse(token);
     }
 

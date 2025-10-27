@@ -1,16 +1,14 @@
-package com.example.secureTaskTrackerApi.model;
+package com.example.secureTaskTrackerApi.entity;
 
 import com.example.secureTaskTrackerApi.entity.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
-@Table(name = "tasks")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Task {
 
     @Id
@@ -18,11 +16,12 @@ public class Task {
     private Long id;
 
     private String title;
+
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    private String status; // e.g., "IN_PROGRESS", "DONE"
+
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 }
-
-

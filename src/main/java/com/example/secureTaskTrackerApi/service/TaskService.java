@@ -1,6 +1,7 @@
 package com.example.secureTaskTrackerApi.service;
 
-import com.example.secureTaskTrackerApi.model.Task;
+
+import com.example.secureTaskTrackerApi.entity.Task;
 import com.example.secureTaskTrackerApi.entity.User;
 import com.example.secureTaskTrackerApi.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
